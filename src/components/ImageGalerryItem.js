@@ -14,12 +14,9 @@ class GalleryItem extends Component {
   closeModal = (e) => {
     if (e.target.nodeName !== "IMG" || e.key === "Escape") {
       this.setState({ isModalOpen: false });
+      window.removeEventListener("keydown", this.closeModal);
     }
   };
-
-  componentWillUnmount(){
-    window.removeEventListener("keydown", this.closeModal);
-  }
 
   render() {
     const { isModalOpen } = this.state;
