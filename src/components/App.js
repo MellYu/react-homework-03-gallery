@@ -22,7 +22,7 @@ class App extends Component {
 
   loadHandler = () => {
     const { searchQuery, currentPage } = this.state;
-
+    this.setState({loading: true})
     return getImagesFromApi(searchQuery, currentPage)
       .then((response) => {
         return this.setState((prev) => ({
@@ -56,9 +56,9 @@ class App extends Component {
     return (
       <>
         <Searchbar onSearch={this.searchImagesHandler} />
-        {loading && <LoaderReact />}
         {gallery.length > 0 && <GalleryList gallery={gallery} />}
         {gallery.length > 0 && <ButtonLoadMore clickFunc={this.loadHandler} />}
+        {loading && <LoaderReact />}
       </>
     );
   }
